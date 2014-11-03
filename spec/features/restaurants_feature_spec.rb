@@ -36,4 +36,34 @@ describe 'restaurants' do
  		end
 	end
 
+	context 'viewing restaurants' do
+
+	  before do 
+	    @kfc = Restaurant.create(name:'KFC') 
+	  end
+
+	  it 'lets a user view a restaurant' do
+	   visit '/restaurants'
+	   click_link 'KFC'
+	   expect(page).to have_content 'KFC'
+	   expect(current_path).to eq "/restaurants/#{@kfc.id}"
+	  end
+	end
+
+	context 'editing restaurants' do
+
+	  before do 
+	    Restaurant.create(name:'KFC') 
+	  end
+
+	  it 'lets a user edit a restaurant' do
+	   visit '/restaurants'
+	   click_link 'Edit KFC'
+	   fill_in 'Name', with: 'Kentucky Fried Chicken'
+	   click_button 'Update Restaurant'
+	   expect(page).to have_content 'Kentucky Fried Chicken'
+	   expect(current_path).to eq '/restaurants'
+	  end
+	end
+
 end

@@ -5,12 +5,30 @@ class RestaurantsController < ApplicationController
 	end
 
 	def new
-		@restaurants = Restaruant.new
+		@restaurants = Restaurant.new
 	end
 
 	def create
-		Restaurant.create(params[:restaurant]).permit(:name)
-		redirect_to '/restaurants'
-	end
+    @restaurant = Restaurant.create(restaurant_params) 
+    redirect_to '/restaurants'
+  end
+
+  def restaurant_params
+    params.require(:restaurant).permit(:name)
+  end
+
+  def show
+  	@restaurant = Restaurant.find(params[:id])
+  end
+
+  def edit
+  	@restaurant = Restaurant.find(params[:id])
+  end
+
+  def update
+    @restaurant = Restaurant.find(params[:id])
+    @restaurant.update(restaurant_params)
+    redirect_to '/restaurants'
+  end
 
 end
