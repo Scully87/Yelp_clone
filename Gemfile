@@ -45,3 +45,5 @@ gem 'capybara', group: :test
 gem 'rspec-collection_matchers', group: :test
 
 gem 'devise'
+
+gem 'omniauth-facebook'
