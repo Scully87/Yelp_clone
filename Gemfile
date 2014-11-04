@@ -46,6 +46,10 @@ gem 'rspec-collection_matchers', group: :test
 
 gem 'devise'
 
+<<<<<<< HEAD
 gem 'poltergeist'
 
 gem 'database_cleaner'
+=======
+gem 'omniauth-facebook'
+>>>>>>> f441f0c3a36be69c8548d5b0e9b10c549fbec88e

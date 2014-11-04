@@ -25,9 +25,15 @@ describe 'reviewing' do
   end
 
   it 'displays an average rating for all reviews' do
+<<<<<<< HEAD
     leave_review('So so', "3")
     leave_review('Great', "5")
     expect(page).to have_content("Average rating: 4")
+=======
+      leave_review('So so', "3")
+      leave_review('Great', "5")
+      expect(page).to have_content("Average: 4")
+>>>>>>> f441f0c3a36be69c8548d5b0e9b10c549fbec88e
   end
 
 end

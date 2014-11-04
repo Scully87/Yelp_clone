@@ -13,8 +13,15 @@
  *= require_tree .
  *= require_self
  */
+<<<<<<< HEAD
 body {
 	background-color: rgb(238,238,238);
 	font-size: 1.2em;
 	font-family: arial;
+=======
+
+body{
+	background-color: rgb(200,250,210);
+	font-size: 1.5em;
+>>>>>>> f441f0c3a36be69c8548d5b0e9b10c549fbec88e
 }
