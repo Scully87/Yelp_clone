@@ -1,11 +1,15 @@
 <% if @restaurants.any? %>
+ <br><br><h2><a href='restaurants/new'>| Add a restaurant |</a></h2>
+
+	<% if flash[:notice].present? %>
+    <p><%= flash[:notice] %></p>
+  <% end %>
+
   <% @restaurants.each do |restaurant| %>
     <h2> <%= link_to "#{restaurant.name}", restaurant_path(restaurant) %><br> </h2>
     <%= link_to "Edit #{restaurant.name}", edit_restaurant_path(restaurant) %><br>
     <%= link_to "Delete #{restaurant.name}", restaurant_path(restaurant), method: :delete %><br>
     <%= link_to "Review #{restaurant.name}", new_restaurant_review_path(restaurant)%><br>
-
-    <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
 
 <h3>Reviews for <%= restaurant.name %></h3>
 <h3>Average rating: <%= restaurant.average_rating.to_i %></h3>
@@ -13,10 +17,13 @@
 	  <p>No reviews.</p><br>
 	<% else %>
 	  <ul>
+	------------------------------------------------------------------------------------------
 	    <% restaurant.reviews.each do |review| %>
 	      <li>
 	        <%= review.thoughts %>, <strong><%= review.rating %></strong>/5<br>
 	      </li>
+	------------------------------------------------------------------------------------------
+
 	    <% end %>
 	  </ul>
 <% end %>
@@ -25,10 +32,3 @@
 <% else %>
   No restaurants yet
 <% end %>
-
-
-	<% if flash[:notice].present? %>
-    <p><%= flash[:notice] %></p>
-  <% end %>
-
-<a href='restaurants/new'>Add a restaurant</a>
