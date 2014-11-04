@@ -5,6 +5,8 @@
     <%= link_to "Delete #{restaurant.name}", restaurant_path(restaurant), method: :delete %><br>
     <%= link_to "Review #{restaurant.name}", new_restaurant_review_path(restaurant)%><br>
 
+    <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
+
 <h3>Reviews for <%= restaurant.name %></h3>
 <h3>Average rating: <%= restaurant.average_rating.to_i %></h3>
 	<% if !restaurant.reviews.any? %>
