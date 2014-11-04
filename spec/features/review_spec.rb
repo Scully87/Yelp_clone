@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'reviewing' do
- 
+
   before do
     Restaurant.create(name: 'KFC')
   end
@@ -29,4 +29,5 @@ describe 'reviewing' do
     leave_review('Great', "5")
     expect(page).to have_content("Average rating: 4")
   end
+
 end

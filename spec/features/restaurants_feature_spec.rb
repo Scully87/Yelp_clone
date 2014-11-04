@@ -2,6 +2,15 @@ require 'rails_helper'
 
 describe 'restaurants' do
 
+  before do
+    visit('/')
+    click_link('Sign up')
+    fill_in('Email', with: 'test@example.com')
+    fill_in('Password', with: 'testtest')
+    fill_in('Password confirmation', with: 'testtest')
+    click_button('Sign up')
+  end
+
   context 'no restaurants have been added' do
 
       it 'should display a prompt to add a restaurant' do
@@ -24,7 +33,7 @@ describe 'restaurants' do
 	  end
 	end
 
-	describe 'creating restaurants' do 
+	context 'creating restaurants' do
 
 	 	it 'prompts user to fill out a form, then displays the new restaurant' do
 		  visit '/restaurants'
@@ -35,8 +44,8 @@ describe 'restaurants' do
 		  expect(current_path).to eq '/restaurants'
  		end
 
- 		context 'an invalid restaurant' do
-			
+ 	context 'an invalid restaurant' do
+
 	    it 'does not let you submit a name that is too short' do
 	      visit '/restaurants'
 	      click_link 'Add a restaurant'
@@ -51,8 +60,8 @@ describe 'restaurants' do
 
 	context 'viewing restaurants' do
 
-	  before do 
-	    @kfc = Restaurant.create(name:'KFC') 
+	  before do
+	    @kfc = Restaurant.create(name:'KFC')
 	  end
 
 	  it 'lets a user view a restaurant' do
@@ -65,8 +74,8 @@ describe 'restaurants' do
 
 	context 'editing restaurants' do
 
-	  before do 
-	    Restaurant.create(name:'KFC') 
+	  before do
+	    Restaurant.create(name:'KFC')
 	  end
 
 	  it 'lets a user edit a restaurant' do
@@ -93,32 +102,34 @@ describe 'restaurants' do
 	  end
 	end
 
-		describe '#average_rating' do
-	    context 'no reviews' do
-	        it 'returns "N/A" when there are no reviews' do
-	            restaurant = Restaurant.create(name: "The Ivy")
-	            expect(restaurant.average_rating).to eq 'N/A'
+	describe '#average_rating' do
+
+	  context 'no reviews' do
+
+	    it 'returns "N/A" when there are no reviews' do
+	      restaurant = Restaurant.create(name: "The Ivy")
+	      expect(restaurant.average_rating).to eq 'N/A'
 	        end
 	    end
 		end
 
-	context '1 review' do
+	  context '1 review' do
 
-    it 'returns that rating' do
+      it 'returns that rating' do
         restaurant = Restaurant.create(name: "The Ivy")
         restaurant.reviews.create(rating: 4)
         expect(restaurant.average_rating).to eq 4
-    end
-	end
+      end
+	  end
 
-	context 'multiple reviews' do
+	  context 'multiple reviews' do
 
-    it 'returns the average' do
+      it 'returns the average' do
         restaurant = Restaurant.create(name: "The Ivy")
         restaurant.reviews.create(rating: 1)
         restaurant.reviews.create(rating: 5)
         expect(restaurant.average_rating).to eq 3
-    end
-	end
+      end
+	  end
 
 end
