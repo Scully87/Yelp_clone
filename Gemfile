@@ -45,3 +45,7 @@ gem 'capybara', group: :test
 gem 'rspec-collection_matchers', group: :test
 
 gem 'devise'
+
+gem 'poltergeist'
+
+gem 'database_cleaner'
