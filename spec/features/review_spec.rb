@@ -1,21 +1,10 @@
 require 'rails_helper'
 
-  include ReviewsHelper
-
 describe 'reviewing' do
 
   before do
     Restaurant.create(name: 'KFC')
   end
-
-  # before do
-  #   visit('/')
-  #   click_link('Sign up')
-  #   fill_in('Email', with: 'test@example.com')
-  #   fill_in('Password', with: 'testtest')
-  #   fill_in('Password confirmation', with: 'testtest')
-  #   click_button('Sign up')
-  # end
 
   it 'allows users to leave a review using a form' do
      visit '/restaurants'
@@ -39,7 +28,7 @@ describe 'reviewing' do
     leave_review('So so', "1")
     leave_review('Great', "5")
     save_and_open_page
-    expect(page).to have_content("Average rating: ★★★☆☆")
+    expect(page).to have_content("Average rating:★★★☆☆")
   end
 
 end

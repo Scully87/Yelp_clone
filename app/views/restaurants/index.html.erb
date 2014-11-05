@@ -19,7 +19,7 @@
 	------------------------------------------------------------------------------------------
 	    <% restaurant.reviews.each do |review| %>
 	      <li>
-	        <%= review.thoughts %>, <strong><%= star_rating(restaurant.average_rating) %></strong><br>
+	        <%= review.thoughts %>, <strong><%= star_rating(review.rating) %></strong><br>
 	      </li>
 	------------------------------------------------------------------------------------------
 	    <% end %>
