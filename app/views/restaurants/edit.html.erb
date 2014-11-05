@@ -1,5 +1,6 @@
-<%= form_for @restaurant do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.submit %>
+<% if @user = current_user %>
+  <%= render "form" %>
+  <% end %>
+<% else %>
+  You cannot edit this restaurant
 <% end %>

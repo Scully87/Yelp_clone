@@ -27,7 +27,6 @@ describe 'reviewing' do
   it 'displays an average rating for all reviews' do
     leave_review('So so', "1")
     leave_review('Great', "5")
-    save_and_open_page
     expect(page).to have_content("Average rating:★★★☆☆")
   end
 

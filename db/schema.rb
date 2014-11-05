@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141105114521) do
+ActiveRecord::Schema.define(version: 20141105222735) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "endorsements", force: true do |t|
+    t.integer  "review_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "endorsements", ["review_id"], name: "index_endorsements_on_review_id", using: :btree
 
   create_table "restaurants", force: true do |t|
     t.string   "name"
@@ -22,6 +30,10 @@ ActiveRecord::Schema.define(version: 20141105114521) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "users_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "restaurants", ["users_id"], name: "index_restaurants_on_users_id", using: :btree

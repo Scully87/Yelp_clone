@@ -47,10 +47,11 @@ gem 'rspec-collection_matchers', group: :test
 
 gem 'devise'
 
-gem 'poltergeist'
-
-gem 'database_cleaner'
+gem 'poltergeist', group: :test
+gem 'database_cleaner', group: :test
 
 gem 'omniauth-facebook'
 
 gem 'cancan'
+
+gem 'paperclip'
