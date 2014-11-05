@@ -76,16 +76,21 @@ describe 'restaurants' do
 
 	  before do
 	    Restaurant.create(name:'KFC')
+    end
+
+	  xit 'lets a user edit a restaurant' do
+      visit '/restaurants'
+      click_link 'Edit KFC'
+	    fill_in 'Name', with: 'Kentucky Fried Chicken'
+	    click_button 'Update Restaurant'
+	    expect(page).to have_content 'Kentucky Fried Chicken'
+	    expect(current_path).to eq '/restaurants'
 	  end
 
-	  it 'lets a user edit a restaurant' do
-	   visit '/restaurants'
-	   click_link 'Edit KFC'
-	   fill_in 'Name', with: 'Kentucky Fried Chicken'
-	   click_button 'Update Restaurant'
-	   expect(page).to have_content 'Kentucky Fried Chicken'
-	   expect(current_path).to eq '/restaurants'
-	  end
+    it 'does not let a user edit a restaurant that they did not create' do
+      visit '/restaurants'
+      expect(page).not_to have_content 'Edit KFC'
+    end
 	end
 
 	context 'deleting restaurants' do
