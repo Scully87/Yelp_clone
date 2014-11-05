@@ -51,3 +51,5 @@ gem 'poltergeist'
 gem 'database_cleaner'
 
 gem 'omniauth-facebook'
+
+gem 'cancan'
