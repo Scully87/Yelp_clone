@@ -16,18 +16,42 @@ describe 'reviewing' do
      expect(page).to have_content('so so')
   end
 
-  def leave_review(thoughts, rating)
-    visit '/restaurants'
-    click_link 'Review KFC'
-    fill_in "Thoughts", with: thoughts
-    select rating, from: 'Rating'
-    click_button 'Leave Review'
-  end
-
   it 'displays an average rating for all reviews' do
-    leave_review('So so', "1")
-    leave_review('Great', "5")
+    _leave_review('So so', "1")
+    _leave_review('Great', "5")
     expect(page).to have_content("Average rating:★★★☆☆")
   end
 
 end
+
+describe '#average_rating' do
+
+  restaurant = Restaurant.create(name: "The Ivy")
+
+  context 'no reviews' do
+
+    it 'returns "N/A" when there are no reviews' do
+      expect(restaurant.average_rating).to eq 'N/A'
+    end
+  end
+
+  context '1 review' do
+
+    it 'returns that rating' do
+      restaurant.reviews.create(rating: 4)
+      expect(restaurant.average_rating).to eq 4
+    end
+  end
+
+  context 'multiple reviews' do
+
+    it 'returns the average' do
+      restaurant = Restaurant.create(name: "The Ivy")
+      restaurant.reviews.create(rating: 1)
+      restaurant.reviews.create(rating: 5)
+      expect(restaurant.average_rating).to eq 3
+    end
+  end
+end
+
+
