@@ -1,20 +1,19 @@
 <h2><a href='restaurants/new'>Add a restaurant</a></h2>
 
 <% if @restaurants.any? %>
-  <% @restaurants.reverse.each do |restaurant| %>
+  <% @restaurants.each do |restaurant| %>
     <h2><%= link_to "#{restaurant.name}", restaurant_path(restaurant) %><br></h2>
     <%= image_tag restaurant.image.url(:thumb) %><br>
     <% if restaurant.user == current_user %>
     <%= link_to "Edit #{restaurant.name}", edit_restaurant_path(restaurant) %><br>
-    <% end %>
     <%= link_to "Delete #{restaurant.name}", restaurant_path(restaurant), method: :delete %><br>
     <%= link_to "Review #{restaurant.name}", new_restaurant_review_path(restaurant)%><br>
+    <% end %>
 
   <h3>Reviews for <%= restaurant.name %></h3>
   <h3>Average rating:<%= star_rating(restaurant.average_rating) %></h3>
 
-    <% if !restaurant.reviews.any? %>
-      <p>No reviews.</p><br>
+    <% if !restaurant.reviews.any? %>      <p>No reviews.</p><br>
     <% else %>
 
 	    <% restaurant.reviews.each do |review| %>

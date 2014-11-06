@@ -2,18 +2,9 @@ require 'rails_helper'
 
 describe 'restaurants' do
 
-  before do
-    visit('/')
-    click_link('Sign up')
-    fill_in('Email', with: 'test@example.com')
-    fill_in('Password', with: 'testtest')
-    fill_in('Password confirmation', with: 'testtest')
-    click_button('Sign up')
-  end
-
   context 'no restaurants have been added' do
 
-      it 'should display a prompt to add a restaurant' do
+    it 'should display a prompt to add a restaurant' do
       visit '/restaurants'
       expect(page).to have_content 'No restaurants'
       expect(page).to have_link 'Add a restaurant'
@@ -22,12 +13,9 @@ describe 'restaurants' do
 
   context 'restaurants have been added' do
 
-	  before do
-	    Restaurant.create(name: 'KFC')
-	  end
-
 	  it 'should display restaurants' do
-	    visit '/restaurants'
+      Restaurant.create(name:'KFC')
+      visit '/restaurants'
 	    expect(page).to have_content('KFC')
 	    expect(page).not_to have_content('No restaurants yet')
 	  end
@@ -36,6 +24,7 @@ describe 'restaurants' do
 	context 'creating restaurants' do
 
 	 	it 'prompts user to fill out a form, then displays the new restaurant' do
+      _sign_in
 		  visit '/restaurants'
 		  click_link 'Add a restaurant'
 		  fill_in 'Name', with: 'KFC'
@@ -47,6 +36,7 @@ describe 'restaurants' do
  	context 'an invalid restaurant' do
 
 	    it 'does not let you submit a name that is too short' do
+        _sign_in
 	      visit '/restaurants'
 	      click_link 'Add a restaurant'
 	      fill_in 'Name', with: 'kf'
@@ -74,20 +64,18 @@ describe 'restaurants' do
 
 	context 'editing restaurants' do
 
-	  before do
-	    Restaurant.create(name:'KFC')
-    end
-
-	  xit 'lets a user edit a restaurant' do
-      visit '/restaurants'
+	  it 'lets a user edit a restaurant they created' do
+      _sign_in_2
       click_link 'Edit KFC'
-	    fill_in 'Name', with: 'Kentucky Fried Chicken'
-	    click_button 'Update Restaurant'
+      save_and_open_page
+      fill_in 'Name', with: 'Kentucky Fried Chicken'
+      click_button 'Update Restaurant'
 	    expect(page).to have_content 'Kentucky Fried Chicken'
 	    expect(current_path).to eq '/restaurants'
 	  end
 
     it 'does not let a user edit a restaurant that they did not create' do
+      _sign_in
       visit '/restaurants'
       expect(page).not_to have_content 'Edit KFC'
     end
@@ -95,16 +83,19 @@ describe 'restaurants' do
 
 	context 'deleting restaurants' do
 
-	  before do
-	    Restaurant.create(:name => "KFC")
-	  end
+	  it "removes a restaurant when a user created it and clicks a delete link" do
 
-	  it "removes a restaurant when a user clicks a delete link" do
 	    visit '/restaurants'
 	    click_link 'Delete KFC'
 	    expect(page).not_to have_content 'KFC'
 	    expect(page).to have_content 'Restaurant deleted successfully'
 	  end
+
+    it 'does not let a user delete a restaurant that they did not create' do
+      _sign_in
+      visit '/restaurants'
+      expect(page).not_to have_content 'Delete KFC'
+    end
 	end
 
 	describe '#average_rating' do

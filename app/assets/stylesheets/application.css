@@ -14,5 +14,6 @@
  *= require_self
 */
 body {
+  /*padding-left: 50px;*/
   text-align: center;
 }
