@@ -4,10 +4,17 @@ describe 'restaurants' do
 
   context 'no restaurants have been added' do
 
-    it 'should display a prompt to add a restaurant' do
+    it 'should display a prompt to add a restaurant when signed in' do
+      _sign_in
       visit '/restaurants'
       expect(page).to have_content 'No restaurants'
       expect(page).to have_link 'Add a restaurant'
+    end
+
+    it 'should not display a prompt to add a restaurant unless signed in' do
+      visit '/restaurants'
+      expect(page).to have_content 'No restaurants'
+      expect(page).not_to have_link 'Add a restaurant'
     end
   end
 
@@ -65,14 +72,23 @@ describe 'restaurants' do
 	context 'editing restaurants' do
 
 	  it 'lets a user edit a restaurant they created' do
-      _sign_in_2
+      _sign_in
+      _create_kfc
+      visit '/restaurants'
       click_link 'Edit KFC'
-      save_and_open_page
       fill_in 'Name', with: 'Kentucky Fried Chicken'
       click_button 'Update Restaurant'
 	    expect(page).to have_content 'Kentucky Fried Chicken'
 	    expect(current_path).to eq '/restaurants'
 	  end
+
+
+# visit '/restaurants'
+#       click_link 'Edit Greasy Spoon'
+#       fill_in 'Name', with: 'The Greasy Spoon Restaurant'
+
+
+
 
     it 'does not let a user edit a restaurant that they did not create' do
       _sign_in
@@ -84,7 +100,8 @@ describe 'restaurants' do
 	context 'deleting restaurants' do
 
 	  it "removes a restaurant when a user created it and clicks a delete link" do
-
+      _sign_in
+      _create_kfc
 	    visit '/restaurants'
 	    click_link 'Delete KFC'
 	    expect(page).not_to have_content 'KFC'
