@@ -12,14 +12,7 @@
  *
  *= require_tree .
  *= require_self
- */
- /**{background-color: rgb(238,238,238); color: black;}*/
-/*body {
-	background-color: gray;
-	color: white;
-	font-size: 1.2em;
-	font-family: arial;
-}*/
+*/
 body {
   text-align: center;
 }

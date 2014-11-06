@@ -55,3 +55,5 @@ gem 'omniauth-facebook'
 gem 'cancan'
 
 gem 'paperclip'
+
+gem 'aws-sdk'

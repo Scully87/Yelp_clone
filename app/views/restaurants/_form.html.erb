@@ -1,6 +1,7 @@
 <%= form_for @restaurant do |f| %>
-  <%= f.label :name %>
+  <%= f.label :name %>:
   <%= f.text_field :name %>
-  <%= f.submit %>
+  <%= f.submit %><br><br>
+  <%= f.label :image %>:
   <%= f.file_field :image %>
 <% end %>

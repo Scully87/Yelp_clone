@@ -21,7 +21,7 @@
 	      <li>
 	        <%= review.thoughts %> <strong><%= star_rating(review.rating) %></strong><br>
           <%= link_to "Endorse #{restaurant.name}", review_endorsements_path(review), class: 'endorsements-link' %>
-        <span class="endorsements_count"> <%= review.endorsements.count %> </span> endorsements
+        <span class="endorsements_count"> <%= review.endorsements.count %> </span> endorsements<br><br>
 	      </li>
 
 	    <% end %>
