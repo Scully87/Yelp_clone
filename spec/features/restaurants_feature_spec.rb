@@ -82,14 +82,6 @@ describe 'restaurants' do
 	    expect(current_path).to eq '/restaurants'
 	  end
 
-
-# visit '/restaurants'
-#       click_link 'Edit Greasy Spoon'
-#       fill_in 'Name', with: 'The Greasy Spoon Restaurant'
-
-
-
-
     it 'does not let a user edit a restaurant that they did not create' do
       _sign_in
       visit '/restaurants'

@@ -13,7 +13,24 @@
  *= require_tree .
  *= require_self
 */
-body {
-  /*padding-left: 50px;*/
+body{  margin-left: auto;margin-right: auto; width:100%}
+
+
+section.wrapper {
+  position: relative;
+  height: 100%;
+  width: 200px;
+}
+
+header {
+
+}
+
+header#nav {
+  position: inline;
+  float: right;
+}
+
+section#add_restaurant {
   text-align: center;
 }
