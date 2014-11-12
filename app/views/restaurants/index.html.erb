@@ -7,7 +7,7 @@
   <% @restaurants.each do |restaurant| %>
     <h2><%= link_to "#{restaurant.name}", restaurant_path(restaurant) %><br></h2>
 
-    <%= image_tag restaurant.image.url(:thumb) %><br>
+   <%= image_tag restaurant.image.url(:thumb) %><br>
 
     <% if restaurant.user == current_user %>
 

@@ -38,22 +38,3 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-gem 'rspec-rails', group: :test
-
-gem 'capybara', group: :test
-gem 'launchy', group: :test
-
-gem 'rspec-collection_matchers', group: :test
-
-gem 'devise'
-
-gem 'poltergeist', group: :test
-gem 'database_cleaner', group: :test
-
-gem 'omniauth-facebook'
-
-gem 'cancan'
-
-gem 'paperclip'
-
-gem 'aws-sdk'
